@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace(); // Pastikan ini ada setelah skrip
+    </script> <!-- File CSS tambahan -->
+    <style>
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('hotel4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Menjamin body mengisi seluruh halaman */
+    flex-direction: column; /* Menyusun elemen vertikal */
+    color: #333;
+}
+
+/* Login Section */
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+
+/* Login Card */
+.login-card {
+    background: rgba(59, 59, 59, 0.222); /* Transparan putih */
+    backdrop-filter: blur(15px); /* Efek blur */
+    -webkit-backdrop-filter: blur(15px); /* Safari kompatibilitas */
+    padding: 30px 40px;
+    border-radius: 15px; /* Sudut melengkung */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Efek bayangan */
+    text-align: center;
+    width: 350px;
+}
+
+
+    /* Judul */
+    .login-card h2 {
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    /* Form Group */
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        color: #fff;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        outline: none;
+    }
+
+    .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Tombol Login */
+    .btn-login {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+        background-color: #0056b3;
+    }
+
+    /* Link Register */
+    .register-link {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .register-link a {
+        color: #f0a500;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+   /* Footer Section Styles */
+footer {
+    background-color: #000; /* Mengubah background footer menjadi hitam */
+    color: white;
+    padding: 30px 20px;
+    text-align: left;
+    position: relative;
+    width: 100%; /* Pastikan footer memenuhi lebar halaman */
+    box-sizing: border-box; /* Menyertakan padding dalam perhitungan lebar */
+}
+
+/* Footer Content */
+.footer-content {
+    max-width: 1200px; /* Batasi lebar footer */
+    margin: 0 auto; /* Memastikan footer tetap berada di tengah */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Memisahkan tombol sosial media dan konten Contact Us */
+    gap: 30px; /* Memberi jarak antar kolom */
+    align-items: start; /* Menjaga item di atas */
+}
+
+/* Social Media Buttons */
+.social-media {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 12px;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+}
+
+.social-btn i {
+    font-size: 22px;
+}
+
+.social-btn:hover {
+    background-color: #f0a500;
+    transform: translateY(-3px);
+}
+
+.social-btn.instagram,
+.social-btn.facebook,
+.social-btn.tiktok {
+    color: white;
+    border: 2px solid white;
+}
+
+.social-btn:hover {
+    border-color: #f0a500;
+    color: #f0a500;
+}
+
+/* Animasi untuk Social Media Button */
+.social-btn {
+    animation: popIn 0.5s ease-in-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Section Contact Us */
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-us p {
+    margin: 5px 0;
+}
+
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="index.html">Rizalize Hotel</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="facilities.html">Facilities</a></li>
+                    <li><a href="rooms.html">Room Type</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="login.html" class="tbl-biru"><b>Login</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="login">
+        <div class="login-card">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <p class="register-link">Don't have an account? <a href="register.html">Register here</a></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+<footer>
+    <!-- Social Media Buttons -->
+    <div class="social-media">
+        <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+            <i data-feather="instagram"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+            <i data-feather="facebook"></i>
+        </a>
+        <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+            <i data-feather="twitter"></i> <!-- Feather doesn't have TikTok icon, using Twitter -->
+        </a>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+        <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+    </div>
+</footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Cek apakah login sebagai admin
+            if (username === "admin" && password === "admin123") {
+                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("username", username);
+                localStorage.setItem("role", "admin"); // Menyimpan status admin
+                window.location.href = "index.html";
+            } else if (username === "user1" && password === "pass123") {
+                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("username", username);
+                localStorage.setItem("role", "user"); // Menyimpan status user
+                window.location.href = "index.html";
+            } else {
+                alert("Username atau password salah!");
+            }
+
+            feather.replace();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | Rizalize Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+    background: url('hotel4.jpg') no-repeat center center fixed; /* Tambahkan gambar */
+    background-size: cover; /* Gambar menyesuaikan ukuran layar */
+    margin: 0; /* Hapus margin default */
+    padding: 0; /* Hapus padding default */
+    font-family: Arial, sans-serif; /* Sesuaikan font untuk tampilan */
+    color: #fff; /* Agar teks terlihat jika background gelap */
+}
+
+        /* Navbar Styles */
+nav {
+    background-color: rgba(0, 0, 0, 0.5); /* Transparansi agar blur terlihat */
+    color: white;
+    padding: 10px 0;
+    backdrop-filter: blur(5px); /* Efek blur di belakang navbar */
+    -webkit-backdrop-filter: blur(5px); /* Untuk kompatibilitas di Safari */
+    position: fixed; /* Agar navbar tetap di posisi atas */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100; /* Agar navbar di atas konten lainnya */
+}
+
+.nav-wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Pastikan semua elemen sejajar secara vertikal */
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0; /* Hapus margin default pada ul */
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+/* Navbar Link Hover - Membuat teks navbar membesar */
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    position: relative;
+    transition: transform 0.3s ease, font-size 0.3s ease; /* Tambahkan transisi pada font-size */
+}
+
+.menu ul li a:hover {
+    transform: translateY(-5px) scale(1.1); /* Teks membesar dan nonjol sedikit */
+    font-size: 16px; /* Membesarkan ukuran font */
+}
+
+.menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #f0a500;
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.menu ul li a:hover::after {
+    transform: scaleX(1); /* Garis bawah muncul saat hover */
+}
+
+/* Wrapper untuk Konten Utama */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Layar penuh */
+    background: url('path/to/your-background.jpg') no-repeat center center; /* Gambar latar */
+    background-size: cover;
+    padding: 20px;
+}
+
+
+        /* Gaya untuk latar belakang halaman */
+
+
+/* Wrapper untuk form */
+.wrapper {
+    margin: 100px auto; /* Tambahkan jarak dari atas */
+    width: 700px; /* Lebih lebar */
+    padding: 30px; /* Padding lebih besar */
+    background: rgba(255, 255, 255, 0.1); /* Transparansi */
+    backdrop-filter: blur(20px); /* Blur lebih intens */
+    -webkit-backdrop-filter: blur(20px); /* Efek blur untuk Safari */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Bayangan lebih besar */
+    color: rgb(0, 0, 0); /* Warna teks default */
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Header dan deskripsi form */
+.wrapper h1 {
+    font-size: 32px; /* Lebih besar */
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #f0a500;
+}
+
+.wrapper .intro p {
+    font-size: 18px; /* Ukuran teks lebih besar */
+    margin-bottom: 25px;
+    color: rgb(0, 0, 0);
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px; /* Lebih besar untuk spasi antar elemen */
+    text-align: left; /* Rata kiri untuk label */
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    color: rgb(0, 0, 0); /* Warna hitam untuk label */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8); /* Latar putih untuk input */
+    color: #000; /* Teks hitam untuk input */
+    font-size: 16px;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Fokus pada input */
+.form-group input:focus,
+.form-group select:focus {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 8px #f0a500;
+}
+
+/* Tombol */
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #f0a500;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-group button:hover {
+    background: #d08c00;
+}
+
+/* Animasi Fade-In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+        /* Footer Section Styles */
+footer {
+    position: relative;
+    color: white;
+    padding: 30px 20px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dua kolom */
+    gap: 30px;
+    align-items: start;
+    border-radius: 10px;
+    background-color: #000000; 
+    background-size: cover; /* Sesuaikan ukuran gambar */
+}
+
+
+/* Footer Content */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Social Media Buttons */
+.social-media {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 12px;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+}
+
+.social-btn i {
+    font-size: 22px;
+}
+
+.social-btn:hover {
+    background-color: #f0a500;
+    transform: translateY(-3px);
+}
+
+.social-btn.instagram,
+.social-btn.facebook,
+.social-btn.tiktok {
+    color: white;
+    border: 2px solid white;
+}
+
+.social-btn:hover {
+    border-color: #f0a500;
+    color: #f0a500;
+}
+
+/* Animasi untuk Social Media Button */
+.social-btn {
+    animation: popIn 0.5s ease-in-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Section Contact Us */
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-us p {
+    margin: 5px 0;
+}
+
+/* Tambahan untuk Footer */
+footer .social-media {
+    justify-content: center; /* Social media di tengah footer */
+    margin-top: 20px;
+}
+
+footer .social-btn:hover {
+    background-color: #333;
+    color: #f0a500; /* Warna hover pada ikon footer */
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <div class="logo"><a href="index.html">Rizalize Hotel</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="facilities.html">Facilities</a></li>
+                    <li><a href="rooms.html">Room Type</a></li>
+                    <li><a href="booking.html"><b>Booking</b></a></li>
+                    <li id="profile-link" class="dropdown">
+                        <div class="profile-initials"></div>
+                        <div class="profile-dropdown">
+                            <ul>
+                                <li><a href="#">Edit Profile</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <h1>Booking</h1>
+        <div class="intro">
+            <p>Silakan isi form di bawah ini untuk melakukan pemesanan kamar di Rizalize Hotel.</p>
+        </div>
+    
+        <!-- Booking Form -->
+        <form action="submit_booking.php" method="POST" id="booking-form">
+            <div class="form-group">
+                <label for="booking-id">ID Pemesanan</label>
+                <input type="text" id="booking-id" name="booking-id" required placeholder="Enter your booking ID">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Nama Pemesan</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+    
+            <div class="form-group">
+                <label for="id-number">Nomor Identitas</label>
+                <input type="text" id="id-number" name="id-number" required placeholder="Enter your ID number">
+            </div>
+    
+            <div class="form-group">
+                <label for="room-type">Tipe Kamar</label>
+                <select id="room-type" name="room-type" required onchange="updatePrice()">
+                    <option value="deluxe-room" data-price="1.500.000">Deluxe Room</option>
+                    <option value="deluxe-suite" data-price="2.500.000">Deluxe Suite</option>
+                    <option value="presidential-suite" data-price="5.000.000">Presidential Suite</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="room-price">Harga Kamar (per malam)</label>
+                <input type="text" id="room-price" name="room-price" readonly value="100000000">
+            </div>
+    
+            <div class="form-group">
+                <label for="order-date">Tanggal Pemesanan</label>
+                <input type="date" id="order-date" name="order-date" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="stay-duration">Durasi Menginap (malam)</label>
+                <input type="number" id="stay-duration" name="stay-duration" required min="1" value="1" onchange="updateTotal()">
+            </div>
+    
+            <div class="form-group">
+                <label for="include-breakfast">Include Breakfast?</label>
+                <input type="checkbox" id="include-breakfast" name="include-breakfast" onchange="updateTotal()">
+            </div>
+    
+            <div class="form-group">
+                <label for="total-price">Total Bayar</label>
+                <input type="text" id="total-price" name="total-price" readonly value="1000000">
+            </div>
+    
+            <div class="form-group">
+                <button type="submit">Book Now</button>
+            </div>
+        </form>
+    </div>
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="social-media">
+            <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+                <i data-feather="instagram"></i>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+                <i data-feather="facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+                <i data-feather="twitter"></i> <!-- Feather doesn't have TikTok icon, using Twitter -->
+            </a>
+        </div>
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+            <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+
+        // Update the price based on the selected room type
+        function updatePrice() {
+            const roomTypeSelect = document.getElementById("room-type");
+            const selectedOption = roomTypeSelect.options[roomTypeSelect.selectedIndex];
+            const price = selectedOption.getAttribute("data-price");
+            document.getElementById("room-price").value = price;
+            updateTotal();
+        }
+
+        // Update the total price based on duration and breakfast option
+        function updateTotal() {
+            const pricePerNight = parseFloat(document.getElementById("room-price").value);
+            const duration = parseFloat(document.getElementById("stay-duration").value);
+            const includeBreakfast = document.getElementById("include-breakfast").checked;
+
+            let totalPrice = pricePerNight * duration;
+
+            if (includeBreakfast) {
+                totalPrice += 20 * duration; // Assume breakfast adds 20 per night
+            }
+
+            document.getElementById("total-price").value = totalPrice;
+        }
+
+        // Initialize price update
+        updatePrice();
+         document.addEventListener("DOMContentLoaded", function () {
+        const profileLink = document.getElementById("profile-link");
+        
+        // Fungsi untuk menampilkan dropdown
+        function setProfileLink() {
+            const loggedIn = localStorage.getItem("loggedIn");
+            const role = localStorage.getItem("role"); 
+            if (loggedIn === "true") {
+                const initial = role === "admin" ? "A" : "U";
+                profileLink.innerHTML = `
+                    <div class="profile-initials">${initial}</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onclick="logout()">Logout</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                profileLink.innerHTML = '<a href="login.html">Login</a>';
+            }
+        }
+
+        // Logout Function
+        window.logout = function () {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("role");
+            setProfileLink();
+            window.location.href = "login.html";
+        };
+
+        feather.replace();
+        setProfileLink();
+   
+
+        // Update the price based on the selected room type
+        function updatePrice() {
+            const roomTypeSelect = document.getElementById("room-type");
+            const selectedOption = roomTypeSelect.options[roomTypeSelect.selectedIndex];
+            const price = selectedOption.getAttribute("data-price");
+            document.getElementById("room-price").value = price;
+            updateTotal();
+        }
+
+    });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Rizalize Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link ke Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="wrapper">
+        <div class="logo"><a href="index.html">Rizalize Hotel</a></div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html"><b>About Us</b></a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+                <li><a href="rooms.html">Room Type</a></li> 
+                <li><a href="booking.html">Booking</a></li>
+                <li id="profile-link" class="dropdown">
+                    <!-- Inisial atau status pengguna akan muncul jika sudah login -->
+                    <!-- Dropdown menu akan ditambahkan di sini -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- About Us Section -->
+<section id="about">
+    <div class="about-content">
+        <h1>Rizalize Hotel</h1>
+        <p>Rizalize Hotel adalah tempat yang menawarkan kenyamanan dan kemewahan di setiap sudutnya. Dengan layanan kelas dunia dan fasilitas terbaik, kami berkomitmen untuk memberikan pengalaman menginap yang tak terlupakan bagi setiap tamu.</p>
+        <p>Terletak di lokasi strategis, Rizalize Hotel menjadi pilihan tepat untuk perjalanan bisnis maupun liburan keluarga. Dengan berbagai jenis kamar yang nyaman dan layanan yang ramah, kami siap memastikan masa tinggal Anda selalu menyenangkan.</p>
+        <p>Tim kami yang terlatih dan profesional siap memberikan pelayanan terbaik, mulai dari check-in yang cepat hingga pengalaman bersantap yang luar biasa. Kami percaya bahwa kepuasan tamu adalah prioritas utama kami.</p>
+    </div>
+</section>
+
+<section id="about-us">
+    <div class="content-box">
+        <h2>About Us</h2>
+        <p>Kami berkomitmen untuk menciptakan solusi yang dapat mengubah kehidupan dengan memanfaatkan teknologi inovatif. Misi kami adalah memberikan pelayanan yang tak tertandingi dan pengalaman pelanggan yang luar biasa, menjadikan kami pemimpin dalam industri ini.</p>
+        <div class="team">
+            <div class="team-member">
+                <img src="CEO.jpg" alt="Team Member">
+                <p>Rizal Apriliadi</P>
+                <p>CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="CTO.jpg" alt="Team Member">
+                <P>Iqbal Zaidan</P>
+                <p>CTO</p>
+            </div>
+            <div class="team-member">
+                <img src="Lead.jpg" alt="Team Member">
+                <P>Fergie Hasbi</P>
+                <p>Lead Developer</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Vision and Mission Section -->
+<section id="vision-mission">
+    <div class="wrapper">
+        <div class="section-title">
+            <h2>Visi dan Misi Kami</h2>
+        </div>
+        <div class="content">
+            <div class="vision">
+                <h3>Visi</h3>
+                <p>Menjadi hotel pilihan utama yang memberikan pengalaman menginap terbaik dengan layanan unggul di kelasnya.</p>
+            </div>
+            <div class="mission">
+                <h3>Misi</h3>
+                <p>1. Memberikan kenyamanan terbaik bagi setiap tamu.<br>
+                   2. Menyediakan fasilitas lengkap untuk kebutuhan bisnis dan rekreasi.<br>
+                   3. Menjaga kualitas layanan dan inovasi yang berkesinambungan.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="social-media">
+        <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+            <i data-feather="instagram"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+            <i data-feather="facebook"></i>
+        </a>
+        <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+            <i data-feather="twitter"></i> <!-- Feather doesn't have TikTok icon, using Twitter -->
+        </a>
+    </div>
+
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+        <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileLink = document.getElementById("profile-link");
+
+        // Fungsi untuk menampilkan dropdown
+        function setProfileLink() {
+            const loggedIn = localStorage.getItem("loggedIn");
+            const role = localStorage.getItem("role"); 
+            if (loggedIn === "true") {
+                const initial = role === "admin" ? "A" : "U";
+                profileLink.innerHTML = `
+                    <div class="profile-initials">${initial}</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onclick="logout()">Logout</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                profileLink.innerHTML = '<a href="login.html">Login</a>';
+            }
+        }
+
+        // Logout Function
+        window.logout = function () {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("role");
+            setProfileLink();
+            window.location.href = "login.html";
+        };
+
+        feather.replace();
+        setProfileLink();
+    });
+</script>
+
+</body>
+</html>

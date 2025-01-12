@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizalize Hotel</title>
+    <style>
+        /* Navbar */
+        nav {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            padding: 10px 0;
+        }
+
+        .wrapper {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+            position: relative; /* Untuk dropdown */
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: transform 0.3s ease, font-size 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            transform: translateY(-5px) scale(1.1);
+            font-size: 16px;
+        }
+
+        /* Dropdown Profil */
+        #profile-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile-initials {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .profile-initials:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Dropdown Menu */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%; /* Dropdown muncul di bawah profil */
+            left: 0;
+            background-color: #333;
+            border-radius: 4px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            padding: 10px 0;
+        }
+
+        .profile-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-dropdown ul li {
+            padding: 8px 16px;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+        }
+
+        .profile-dropdown ul li:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tampilkan dropdown saat hover */
+        #profile-link:hover .profile-dropdown {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="booking.html">Rizalize Hotel</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html"><b>Home</b></a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="facilities.html">Facilities</a></li>
+                    <li><a href="rooms.html">Room Type</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li id="profile-link" class="dropdown">
+                        <div class="profile-initials">R</div>
+                        <div class="profile-dropdown">
+                            <ul>
+                                <li><a href="#">Edit Profile</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities - Rizalize Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link ke Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+#adminFacilityControl {
+    background-color: rgba(255, 0, 0, 0.3); /* Warna merah transparan untuk debug */
+}
+
+
+    .btn-manage-facility {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .btn-manage-facility:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="wrapper">
+        <div class="logo"><a href="booking.html">Rizalize Hotel</a></div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="facilities.html"><b>Facilities</b></a></li>
+                <li><a href="rooms.html">Room Type</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li id="profile-link" class="dropdown">
+                    <div class="profile-initials">R</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Facilities Section -->
+<section id="facilities">
+    <body style="background-image: url('hotel4.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center;">
+        
+
+        <h2>Fasilitas Kami</h2>
+        <div class="facilities-list">
+            <!-- Facility Item 1 -->
+            <div class="facility-item" id="wifi">
+                <img src="Wifi.jpeg" alt="Wi-Fi Gratis" class="facility-image">
+                <h3>Wi-Fi Gratis</h3>
+                <p>Tetap terhubung dengan dunia luar selama masa tinggal Anda. Nikmati internet berkecepatan tinggi yang dapat diakses di seluruh area hotel, mulai dari lobi hingga kamar tidur, untuk mendukung aktivitas Anda baik untuk bekerja maupun bersantai. Dengan jaringan Wi-Fi yang stabil, Anda tidak perlu khawatir terputusnya koneksi, menjadikan liburan atau perjalanan bisnis Anda lebih lancar.
+                Tidak perlu khawatir soal biaya tambahan! Wi-Fi kami sepenuhnya gratis untuk semua tamu. Apakah Anda perlu menjawab email penting, melakukan video call, atau sekadar berselancar di dunia maya, kami pastikan Anda selalu terhubung dengan mudah dan nyaman.</p>
+                <button class="manage-facility-btn" style="display: none;" onclick="editFacility('wifi')">Edit</button>
+                <button class="manage-facility-btn" style="display: none;" onclick="deleteFacility('wifi')">Delete</button>
+            </div>
+            <!-- Facility Item 2 -->
+            <div class="facility-item" id="breakfast">
+                <img src="Breakfast.jpeg" alt="Sarapan Gratis" class="facility-image">
+                <h3>Sarapan Gratis</h3>
+                <p>Mulailah hari Anda dengan semangat baru! Nikmati sarapan pagi yang lezat dan bergizi, sudah termasuk dalam pemesanan kamar Anda. Kami menyediakan beragam pilihan menu mulai dari sarapan khas lokal yang menggugah selera hingga pilihan internasional yang memanjakan lidah. Setiap hidangan disiapkan dengan bahan berkualitas tinggi, memastikan Anda mendapat energi untuk memulai aktivitas harian.
+                Tunggu apa lagi? Bersantailah di ruang makan kami yang nyaman sambil menikmati hidangan sarapan yang menyenangkan. Ciptakan kenangan indah dengan menikmati waktu pagi bersama orang tersayang atau rekan bisnis di Rizalize Hotel.</p>
+                <button class="manage-facility-btn" style="display: none;" onclick="editFacility('breakfast')">Edit</button>
+                <button class="manage-facility-btn" style="display: none;" onclick="deleteFacility('breakfast')">Delete</button>
+            </div>
+            <!-- Facility Item 3 -->
+            <div class="facility-item" id="swimming">
+                <img src="Pool.jpeg" alt="Kolam Renang" class="facility-image">
+                <h3>Kolam Renang</h3>
+                <p>Bersantai dan nikmati momen menyegarkan di kolam renang luar ruangan kami. Dikelilingi oleh pemandangan yang indah, kolam ini menjadi tempat yang sempurna untuk melepas penat setelah seharian beraktivitas. Nikmati waktu bersantai di tempat berjemur yang nyaman atau nikmati berenang di air yang sejuk sambil menikmati cuaca yang cerah.
+                Hadir dengan fasilitas yang memadai, kolam renang ini menawarkan pengalaman relaksasi terbaik. Dengan berbagai pilihan spot nyaman di sekitar kolam, Anda dapat menikmati waktu senggang yang sempurna. Segera nikmati sensasi berlibur yang lebih segar di Rizalize Hotel.</p>
+                <button class="manage-facility-btn" style="display: none;" onclick="editFacility('swimming')">Edit</button>
+                <button class="manage-facility-btn" style="display: none;" onclick="deleteFacility('swimming')">Delete</button>
+            </div>
+            <!-- Facility Item 4 -->
+            <div class="facility-item" id="business-center">
+                <img src="Bussines.jpeg" alt="Pusat Bisnis" class="facility-image">
+                <h3>Pusat Bisnis</h3>
+                <p>Bagi Anda yang memiliki keperluan bisnis, Rizalize Hotel menawarkan Pusat Bisnis dengan fasilitas lengkap. Dengan ruang yang nyaman dan perlengkapan modern, Anda dapat menyelesaikan pekerjaan dengan mudah. Internet cepat, printer, dan ruang rapat tersedia untuk memenuhi semua kebutuhan profesional Anda selama menginap.
+                Tidak hanya itu, staf kami siap membantu Anda dalam berbagai kebutuhan administratif. Apakah itu mengatur rapat atau mengurus dokumen penting, kami akan memastikan Anda dapat bekerja dengan lancar di lingkungan yang mendukung.</p>
+                <button class="manage-facility-btn" style="display: none;" onclick="editFacility('business-center')">Edit</button>
+                <button class="manage-facility-btn" style="display: none;" onclick="deleteFacility('business-center')">Delete</button>
+            </div>
+            <!-- Add Facility Button -->
+            <button id="add-facility-btn" style="display: none;" onclick="addFacility()">Tambah Fasilitas</button>
+        </div>
+        
+        
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="social-media">
+        <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+            <i data-feather="instagram"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+            <i data-feather="facebook"></i>
+        </a>
+        <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+            <i data-feather="twitter"></i>
+        </a>
+    </div>
+
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+        <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+    </div>
+</footer>
+
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+        const profileLink = document.getElementById("profile-link");
+
+        // Fungsi untuk mengecek login status dan role pengguna
+// Fungsi untuk mengecek status login dan role pengguna
+// Fungsi untuk mengecek status login dan role pengguna
+// Fungsi untuk mengecek status login dan role pengguna
+// Fungsi untuk mengecek login status dan role pengguna
+// Fungsi untuk mengecek status login dan role pengguna
+function checkLogin() {
+    const loggedIn = localStorage.getItem("loggedIn");
+    const role = localStorage.getItem("role");
+
+    if (loggedIn && role === "admin") {
+        // Menampilkan tombol edit dan delete untuk fasilitas
+        document.querySelectorAll('.manage-facility-btn').forEach(button => {
+            button.style.display = "inline-block";
+        });
+        // Menampilkan tombol tambah fasilitas
+        document.getElementById('add-facility-btn').style.display = "inline-block";
+    } else {
+        // Sembunyikan tombol edit, delete, dan tambah fasilitas jika bukan admin
+        document.querySelectorAll('.manage-facility-btn').forEach(button => {
+            button.style.display = "none";
+        });
+        document.getElementById('add-facility-btn').style.display = "none";
+    }
+}
+
+// Fungsi untuk menambah fasilitas baru
+function addFacility() {
+    const newName = prompt("Masukkan nama fasilitas:");
+    const newDescription = prompt("Masukkan deskripsi fasilitas:");
+
+    // Membuat elemen baru untuk fasilitas
+    const facilityId = newName.toLowerCase().replace(/\s+/g, '-');
+    const newFacility = document.createElement('div');
+    newFacility.classList.add('facility-item');
+    newFacility.id = facilityId;
+
+    // Menambahkan gambar, nama, deskripsi, dan tombol edit/delete
+    newFacility.innerHTML = `
+        <img src="default.jpg" alt="${newName}" class="facility-image" id="${facilityId}-image">
+        <h3>${newName}</h3>
+        <p>${newDescription}</p>
+        <button class="manage-facility-btn" style="display: none;" onclick="editFacility('${facilityId}')">Edit</button>
+        <button class="manage-facility-btn" style="display: none;" onclick="deleteFacility('${facilityId}')">Delete</button>
+    `;
+
+    // Menambahkan fasilitas baru ke dalam list
+    document.querySelector('.facilities-list').appendChild(newFacility);
+
+    // Menyembunyikan tombol tambah setelah fasilitas ditambah
+    document.getElementById('add-facility-btn').style.display = "none";
+    checkLogin(); // Menyegarkan tombol admin setelah perubahan
+}
+
+// Fungsi untuk mengedit fasilitas (nama dan deskripsi)
+function editFacility(facilityId) {
+    const facilityItem = document.getElementById(facilityId);
+    const name = prompt("Edit nama fasilitas:", facilityItem.querySelector('h3').innerText);
+    const description = prompt("Edit deskripsi fasilitas:", facilityItem.querySelector('p').innerText);
+
+    // Memperbarui nama dan deskripsi fasilitas
+    facilityItem.querySelector('h3').innerText = name;
+    facilityItem.querySelector('p').innerText = description;
+    
+    // Memperbarui tombol edit dan delete
+    checkLogin(); // Menyegarkan tombol admin setelah perubahan
+}
+
+// Fungsi untuk menghapus fasilitas
+function deleteFacility(facilityId) {
+    const facilityItem = document.getElementById(facilityId);
+    if (confirm("Apakah Anda yakin ingin menghapus fasilitas ini?")) {
+        facilityItem.remove();
+    }
+}
+
+// Memanggil fungsi checkLogin saat halaman dimuat
+window.onload = checkLogin;
+
+
+
+// Memanggil fungsi checkLogin saat halaman dimuat
+window.onload = checkLogin;
+
+
+
+
+
+
+        // Fungsi untuk menampilkan dropdown
+        function setProfileLink() {
+            const loggedIn = localStorage.getItem("loggedIn");
+            const role = localStorage.getItem("role"); 
+            if (loggedIn === "true") {
+                const initial = role === "admin" ? "A" : "U";
+                profileLink.innerHTML = `
+                    <div class="profile-initials">${initial}</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onclick="logout()">Logout</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                profileLink.innerHTML = '<a href="login.html">Login</a>';
+            }
+        }
+
+        // Logout Function
+        window.logout = function () {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("role");
+            setProfileLink();
+            window.location.href = "login.html";
+        };
+
+        feather.replace();
+        setProfileLink();
+    });
+
+        // Fungsi untuk menampilkan atau menyembunyikan detail fasilitas
+        window.toggleFacilityDetail = function (facilityId) {
+            const facilityDetail = document.getElementById(facilityId);
+            const isVisible = facilityDetail.style.display === "block";
+            facilityDetail.style.display = isVisible ? "none" : "block";
+        };
+
+        
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const loggedIn = localStorage.getItem("loggedIn");
+    const role = localStorage.getItem("role");
+
+    // Ambil elemen tombol
+    const adminFacilityControl = document.getElementById("adminFacilityControl");
+
+    // Tampilkan tombol jika login sebagai admin
+    if (loggedIn === "true" && role === "admin") {
+        adminFacilityControl.style.display = "block";
+    } else {
+        adminFacilityControl.style.display = "none";
+    }
+});
+
+</script>
+
+</body>
+</html>

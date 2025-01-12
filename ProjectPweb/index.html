@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizalize Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Link ke Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <div class="wrapper">
+        <div class="logo"><a href="booking.html">Rizalize Hotel</a></div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+                <li><a href="rooms.html">Room Type</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li id="profile-link" class="dropdown">
+                    <div class="profile-initials">R</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home">
+    <div class="home-content">
+        <h1>Welcome To Rizalize Hotel</h1>
+        <p>Rasakan kenyamanan dan kemewahan terbaik dengan fasilitas luar biasa dan layanan kelas dunia. Kepuasan Anda adalah prioritas kami.</p>
+        <p>Kamar-kamar kami dirancang untuk kenyamanan maksimal, dan staf kami siap melayani segala kebutuhan Anda. Apakah Anda datang untuk urusan bisnis atau rekreasi, kami berjanji pengalaman tak terlupakan.</p>
+        <p>Datang dan temukan perpaduan sempurna antara kemewahan, relaksasi, dan kenyamanan di Rizalize Hotel. Biarkan kami membuat masa tinggal Anda menjadi kenangan yang tak terlupakan!</p>
+    </div>
+</section>
+
+<!-- Discount Section -->
+<section id="discount">
+    <div class="discount-info">
+        <h2>Penawaran Eksklusif: Diskon 20%</h2>
+        <p>Dapatkan diskon 20% untuk pemesanan pertama Anda! Gunakan kode <strong>WELCOME20</strong> saat memesan kamar.</p>
+        <!-- Tombol untuk mengarahkan ke form booking -->
+        <a href="booking.html#booking" class="btn-book-now">Book Now</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features">
+    <h2>Fitur Kami</h2>
+    <div class="features-list">
+        <div class="feature-item">
+            <i data-feather="wifi"></i>
+            <h3>Wi-Fi Gratis</h3>
+            <p>Tetap terhubung sepanjang masa tinggal Anda dengan internet berkecepatan tinggi gratis.</p>
+        </div>
+        <div class="feature-item">
+            <i data-feather="coffee"></i>
+            <h3>Sarapan Gratis</h3>
+            <p>Mulai hari Anda dengan sarapan lezat yang sudah termasuk dalam pemesanan.</p>
+        </div>
+        <div class="feature-item">
+            <i data-feather="swim"></i>
+            <h3>Kolam Renang</h3>
+            <p>Beristirahatlah di kolam renang luar ruangan kami, tempat yang sempurna untuk bersantai.</p>
+        </div>
+        <div class="feature-item">
+            <i data-feather="monitor"></i>
+            <h3>Pusat Bisnis</h3>
+            <p>Untuk kebutuhan bisnis Anda, nikmati akses ke pusat bisnis yang lengkap.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <!-- Social Media Buttons -->
+    <div class="social-media">
+        <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+            <i data-feather="instagram"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+            <i data-feather="facebook"></i>
+        </a>
+        <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+            <i data-feather="twitter"></i> <!-- Feather doesn't have TikTok icon, using Twitter -->
+        </a>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+        <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileLink = document.getElementById("profile-link");
+
+        // Fungsi untuk menampilkan dropdown
+        function setProfileLink() {
+            const loggedIn = localStorage.getItem("loggedIn");
+            const role = localStorage.getItem("role"); 
+            if (loggedIn === "true") {
+                const initial = role === "admin" ? "A" : "U";
+                profileLink.innerHTML = `
+                    <div class="profile-initials">${initial}</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onclick="logout()">Logout</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                profileLink.innerHTML = '<a href="login.html">Login</a>';
+            }
+        }
+
+        // Logout Function
+        window.logout = function () {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("role");
+            setProfileLink();
+            window.location.href = "login.html";
+        };
+
+        feather.replace();
+        setProfileLink();
+    });
+</script>
+
+</body>
+</html>

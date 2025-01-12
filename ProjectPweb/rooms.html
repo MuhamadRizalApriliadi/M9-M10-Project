@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Room Types - Rizalize Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+    padding: 50px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('hotel4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.intro {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.room-item {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 100px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;  /* Ukuran tetap untuk tinggi kotak */
+    width: 250px;   /* Ukuran tetap untuk lebar kotak */
+    box-sizing: border-box;
+    max-width: 100%; /* Memastikan ukuran room-item tidak lebih besar dari container */
+    margin: 0 auto;  /* Untuk memastikan item rapi di tengah */
+}
+
+.room-item .room-details {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+}
+
+.room-item:hover {
+    transform: scale(1.05);
+}
+
+.room-item i {
+    font-size: 40px;
+    color: #ffdd57;
+    margin-bottom: 10px;
+}
+
+.room-item button {
+    background-color: #ffdd57;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%; /* Tombol mengisi lebar room-item */
+    font-size: 14px; /* Ukuran font tombol lebih kecil */
+}
+
+.room-item button:hover {
+    background-color: #ffd000;
+}
+
+.room-item .view-details-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.room-item .view-details-wrapper button {
+    margin-left: 10px;
+}
+
+/* Menambah ruang di antara item */
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Menjaga ukuran tetap */
+    gap: 20px;  /* Menambah jarak antar item */
+}
+
+
+.manage-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.manage-button a {
+    background-color: #ffdd57;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.manage-button a:hover {
+    background-color: #ffd000;
+}
+
+.room-details {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+}
+
+.room-details img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.edit-button {
+    margin-top: 20px;
+    background-color: #ffdd57;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #ffd000;
+}
+
+/* General Styles for Sections */
+
+section {
+    margin-top: 150px;  /* Jarak ke atas section */
+    margin-bottom: 0px;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0); /* Warna dengan transparansi */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Efek blur */
+    -webkit-backdrop-filter: blur(10px); /* Untuk kompatibilitas dengan Safari */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: scale(1.02); /* Efek hover */
+    background-color: rgba(30, 30, 30, 0.9); /* Warna berubah saat hover */
+}
+
+
+h4 {
+    font-size: 24px;
+    color: #ffdd57;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 16px;
+    color: #eaeaea;
+    line-height: 1.6;
+}
+
+/* Room Detail Content */
+.room-detail-content {
+    margin-top: 20px;
+}
+
+/* Adjusted Layout for Room Images */
+.room-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Grid dengan ukuran lebih kecil */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.room-detail-image {
+    width: 100%;
+    height: 200px; /* Menjaga tinggi gambar seragam */
+    object-fit: cover; /* Memastikan gambar menyesuaikan dengan kotak */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.room-detail-image:hover {
+    transform: scale(1.05); /* Efek zoom saat hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Room-item Styles */
+.room-item {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-bottom: 20px; /* Jarak antara room-item */
+}
+
+.room-item:hover {
+    transform: scale(1.05);
+}
+
+.room-item .room-info {
+    background-color: black;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.room-item .view-details-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* Section Specific Styles */
+#deluxe-section, #deluxe-suite-section, #presidential-suite-section {
+    position: relative; /* Untuk overlay */
+    background: rgba(0, 0, 0, 0.5); /* Warna gelap dengan transparansi */
+    backdrop-filter: blur(10px); /* Efek blur */
+    -webkit-backdrop-filter: blur(10px); /* Efek blur untuk Safari */
+    border-radius: 10px; /* Sudut membulat */
+    padding: 20px; /* Spasi dalam */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bayangan untuk efek 3D */
+    margin-bottom: 20px; /* Jarak antar section */
+    transition: transform 0.3s ease-in-out; /* Efek hover */
+}
+
+#deluxe-section:hover, #deluxe-suite-section:hover, #presidential-suite-section:hover {
+    transform: scale(1.02); /* Efek membesar saat hover */
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    section {
+        padding: 15px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .room-images {
+        grid-template-columns: 1fr; /* Gambar satu kolom pada mobile */
+    }
+
+    .room-detail-image {
+        height: 150px;
+    }
+
+    .room-item {
+        padding: 15px;
+    }
+}
+
+/* Modal untuk gambar fullscreen */
+.modal {
+    display: none;  /* Secara default modal tidak terlihat */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);  /* Latar belakang gelap */
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-content {
+    max-width: 90%;  /* Ukuran maksimal gambar */
+    max-height: 80vh;  /* Menjaga tinggi gambar tetap proporsional */
+    margin: auto;
+    display: block;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Menambahkan efek ketika gambar modal muncul */
+.modal-content:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0px 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    position: relative;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.menu ul li a:hover {
+    transform: translateY(-5px) scale(1.1);
+    font-size: 16px;
+}
+
+.menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #f0a500;
+    bottom: -5px;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.menu ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Footer Section Styles */
+footer {
+    background-color: #000; /* Mengubah background footer menjadi hitam */
+    color: white;
+    padding: 30px 20px;
+    text-align: left;
+    position: relative;
+    display: grid; /* Menggunakan grid untuk layout */
+    grid-template-columns: 1fr 1fr; /* Dua kolom: satu untuk tombol sosial media dan satu untuk Contact Us */
+    gap: 30px; /* Memberi jarak antar kolom */
+    align-items: start; /* Menjaga item di atas */
+}
+
+/* Footer Content */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Memisahkan tombol sosial media dan konten Contact Us */
+    gap: 30px;
+}
+
+/* Social Media Buttons */
+.social-media {
+    display: flex;
+    justify-content: flex-start; /* Posisikan tombol di sisi kiri */
+    align-items: center;
+    flex-wrap: wrap; /* Membungkus tombol media sosial agar lebih responsif */
+}
+
+.social-btn {
+    padding: 12px;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #fff; /* Ikon berwarna putih */
+    background-color: transparent; /* Tanpa warna fill */
+    border: 2px solid white; /* Garis putih di sekitar tombol */
+    border-radius: 50%; /* Membuat tombol bulat */
+    transition: background-color 0.3s, transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+}
+
+.social-btn i {
+    font-size: 22px; /* Ukuran ikon */
+}
+
+.social-btn:hover {
+    background-color: #f0a500; /* Efek hover dengan warna latar belakang */
+    transform: translateY(-3px); /* Efek angkat saat hover */
+}
+
+.social-btn.instagram,
+.social-btn.facebook,
+.social-btn.tiktok {
+    color: white; /* Ikon berwarna putih */
+    border: 2px solid white; /* Border putih untuk tombol */
+}
+
+.social-btn:hover {
+    border-color: #f0a500; /* Ubah warna border saat hover */
+    color: #f0a500; /* Ubah warna ikon saat hover */
+}
+
+/* Animasi untuk Social Media Button */
+.social-btn {
+    animation: popIn 0.5s ease-in-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Section Contact Us (Contoh) */
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-us p {
+    margin: 5px 0;
+}
+
+
+
+.room-details img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+        
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav>
+    <div class="wrapper">
+        <div class="logo"><a href="booking.html">Rizalize Hotel</a></div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+                <li><a href="rooms.html"><b>Room Type</b></a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li id="profile-link" class="dropdown">
+                    <div class="profile-initials">R</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="wrapper">
+        <h1>Room Types</h1>
+        <div class="intro">
+            <p>Selamat datang di halaman Room Types kami! Pilih kamar yang paling sesuai dengan kebutuhan Anda. Kami menyediakan berbagai jenis kamar dengan fasilitas terbaik untuk memastikan kenyamanan Anda selama menginap di Rizalize Hotel.</p>
+        </div>
+
+<!-- Room Item (Deluxe Room) -->
+<div class="room-item" id="deluxe-room">
+    <i data-feather="home"></i>
+    <h3>Deluxe Room</h3>
+    <p>Price: Rp <span id="deluxe-price">1,500,000</span> / Night</p>
+    <p>Available: <span id="deluxe-available">5</span></p>
+    <p>Facilities: <span id="deluxe-facilities">King-size bed, free Wi-Fi, breakfast included, private bathroom</span></p>
+    
+    <!-- Button to View Details -->
+    <button class="view-details" data-target="#deluxe-section">View Details</button>
+    
+    <!-- Button to Edit Room (Only visible to Admin) -->
+    <button class="edit-room" id="edit-deluxe-room" style="display: none;" onclick="editRoom('deluxe-room')">Edit Room</button>
+</div>
+
+<!-- Room Item (Deluxe Suite) -->
+<div class="room-item" id="deluxe-suite">
+    <i data-feather="home"></i>
+    <h3>Deluxe Suite</h3>
+    <p>Price: Rp <span id="deluxe-suite-price">2,500,000</span> / Night</p>
+    <p>Available: <span id="deluxe-suite-available">3</span></p>
+    <p>Facilities: <span id="deluxe-suite-facilities">King-size bed, free Wi-Fi, breakfast included, private bathroom, living area</span></p>
+    
+    <!-- Button to View Details -->
+    <button class="view-details" data-target="#deluxe-suite-section">View Details</button>
+    
+    <!-- Button to Edit Room (Only visible to Admin) -->
+    <button class="edit-room" id="edit-deluxe-suite" style="display: none;" onclick="editRoom('deluxe-suite')">Edit Room</button>
+</div>
+
+<!-- Room Item (Presidential Suite) -->
+<div class="room-item" id="presidential-suite">
+    <i data-feather="home"></i>
+    <h3>Presidential Suite</h3>
+    <p>Price: Rp <span id="presidential-price">5,000,000</span> / Night</p>
+    <p>Available: <span id="presidential-available">2</span></p>
+    <p>Facilities: <span id="presidential-facilities">King-size bed, free Wi-Fi, breakfast included, private bathroom, jacuzzi</span></p>
+    
+    <!-- Button to View Details -->
+    <button class="view-details" data-target="#presidential-suite-section">View Details</button>
+    
+    <!-- Button to Edit Room (Only visible to Admin) -->
+    <button class="edit-room" id="edit-presidential-suite" style="display: none;" onclick="editRoom('presidential-suite')">Edit Room</button>
+</div>
+
+
+
+<!-- Sections for Details (located at the bottom of the page) -->
+<section id="deluxe-section">
+    <h4>Deluxe Room Details</h4>
+    <p>Description: King-size bed, free Wi-Fi, breakfast included, private bathroom.</p>
+    <div class="room-detail-content">
+        <p>Kamar Deluxe ini menawarkan pengalaman mewah dengan tempat tidur ukuran king, Wi-Fi berkecepatan tinggi, dan kamar mandi pribadi untuk kenyamanan terbaik. Menginap di sini sudah termasuk sarapan gratis setiap pagi, serta suasana yang luas dan nyaman.</p>
+        <p>Kamar ini sangat cocok untuk liburan santai atau perjalanan bisnis, dengan semua fasilitas yang Anda butuhkan untuk pengalaman menginap yang menyenangkan.</p>
+        <p>Fasilitas tambahan mencakup TV layar datar dengan saluran premium, minibar yang diisi dengan berbagai minuman, serta brankas untuk menyimpan barang berharga Anda. Kamar ini juga dilengkapi meja kerja dan kursi ergonomis, sehingga ideal untuk tamu bisnis.</p>
+        <p>Anda juga akan mendapatkan perlengkapan mandi gratis, jubah mandi yang nyaman, dan sandal untuk meningkatkan kenyamanan Anda. Staf kebersihan kami memastikan kamar Anda selalu bersih setiap hari, menjaga standar kebersihan yang tinggi.</p>
+        <p>Untuk bersantap, layanan kamar tersedia 24 jam sehari, dan Anda dapat memilih berbagai hidangan lokal dan internasional. Tamu juga memiliki akses ke pusat kebugaran dan kolam renang hotel, yang sempurna untuk berolahraga atau bersantai selama menginap.</p>
+        <p>Kamar Deluxe ini menampilkan dekorasi modern dengan pencahayaan hangat dan furnitur lembut untuk menciptakan suasana yang ramah dan menenangkan. Jendela besar memberikan pencahayaan alami dan menawarkan pemandangan indah kota atau taman, tergantung pada lokasi kamar.</p>
+        <p>Untuk kenyamanan tambahan, kamar ini dilengkapi dengan pembuat kopi, ketel elektrik, dan pilihan minuman gratis. Sistem pengatur suhu memungkinkan Anda menyesuaikan suhu sesuai keinginan, memastikan lingkungan yang nyaman selama Anda menginap.</p>
+        <p>Baik Anda berkunjung untuk liburan atau bisnis, Kamar Deluxe ini menawarkan perpaduan sempurna antara kemewahan dan fungsionalitas, dirancang untuk memenuhi standar kenyamanan dan layanan tertinggi.</p>
+        <p>Pesan kamar Anda hari ini dan nikmati pengalaman keramahan premium yang menggabungkan kemewahan, kenyamanan, dan fasilitas modern untuk membuat kunjungan Anda tak terlupakan.</p>
+    </div>
+    
+    <!-- Room Images -->
+    <div class="room-images">
+        <img src="deluxe1.jpeg" alt="Deluxe Room Image 1" class="room-detail-image">
+        <img src="deluxe2.jpeg" alt="Deluxe Room Image 2" class="room-detail-image">
+        <img src="deluxe3.jpeg" alt="Deluxe Room Image 3" class="room-detail-image">
+        <img src="deluxe4.jpeg" alt="Deluxe Room Image 4" class="room-detail-image">
+    </div>
+</section>
+
+<section id="deluxe-suite-section">
+    <h4>Deluxe Suite Details</h4>
+    <p>Description: King-size bed, free Wi-Fi, breakfast included, private bathroom, living area.</p>
+    <div class="room-detail-content">
+        <p>Suite Deluxe menawarkan kemewahan yang luas dengan tempat tidur ukuran king, area ruang tamu, dan semua fasilitas untuk pengalaman menginap yang nyaman. Wi-Fi berkecepatan tinggi, kamar mandi pribadi, dan sarapan harian sudah termasuk dalam paket menginap Anda.</p>
+        <p>Suite ini dirancang khusus untuk tamu yang mencari pengalaman premium, memberikan kenyamanan maksimal dengan ruang tambahan yang sempurna untuk bersantai atau bekerja.</p>
+        <p>Area ruang tamu yang luas dilengkapi dengan sofa nyaman, meja kopi, dan pencahayaan lembut untuk menciptakan suasana yang hangat dan menenangkan. Suite ini juga dilengkapi TV layar datar dengan saluran premium untuk hiburan selama menginap.</p>
+        <p>Kamar mandinya dirancang dengan kemewahan modern, lengkap dengan shower hujan, bathtub, serta perlengkapan mandi berkualitas tinggi. Handuk lembut, jubah mandi eksklusif, dan sandal tersedia untuk menambah kenyamanan Anda.</p>
+        <p>Bagi Anda yang menginap untuk keperluan bisnis, suite ini menyediakan meja kerja ergonomis dan kursi yang nyaman, serta akses Wi-Fi cepat yang memungkinkan Anda tetap produktif.</p>
+        <p>Sarapan harian disajikan dengan berbagai pilihan menu lokal dan internasional yang lezat, memastikan Anda memulai hari dengan energi penuh. Layanan kamar juga tersedia 24 jam untuk memenuhi kebutuhan Anda kapan saja.</p>
+        <p>Suite Deluxe ini menghadirkan perpaduan sempurna antara desain modern dan kenyamanan klasik, menampilkan dekorasi yang elegan dan jendela besar yang memberikan pemandangan kota atau taman yang menakjubkan.</p>
+        <p>Pesan Suite Deluxe ini untuk pengalaman menginap yang tak terlupakan, di mana kemewahan dan kenyamanan berpadu sempurna untuk memenuhi kebutuhan Anda selama perjalanan.</p>
+    </div>
+    
+    <!-- Room Images -->
+    <div class="room-images">
+        <img src="suite1.jpeg" alt="Deluxe Suite Image 1" class="room-detail-image">
+        <img src="suite2.jpeg" alt="Deluxe Suite Image 2" class="room-detail-image">
+        <img src="suite3.jpeg" alt="Deluxe Suite Image 3" class="room-detail-image">
+        <img src="suite4.jpeg" alt="Deluxe Suite Image 4" class="room-detail-image">
+    </div>
+</section>
+
+<section id="presidential-suite-section">
+    <h4>Presidential Suite Details</h4>
+    <p>Description: King-size bed, free Wi-Fi, breakfast included, private bathroom, jacuzzi.</p>
+    <div class="room-detail-content">
+        <p>Presidential Suite menawarkan puncak kemewahan dengan tempat tidur ukuran king, jacuzzi pribadi, dan fasilitas modern untuk pengalaman menginap yang tiada banding. Nikmati Wi-Fi gratis, kamar mandi pribadi, dan sarapan gratis setiap hari selama Anda menginap.</p>
+        <p>Suite ini dirancang khusus untuk tamu yang menginginkan pengalaman eksklusif dengan ruang yang luas dan suasana mewah. Area kamar tidur menawarkan kenyamanan maksimal, dilengkapi dengan linen premium dan pencahayaan lembut untuk menciptakan suasana yang tenang.</p>
+        <p>Jacuzzi pribadi menjadi daya tarik utama suite ini, memungkinkan Anda bersantai sepenuhnya setelah hari yang panjang. Nikmati relaksasi dengan pemandangan menawan, menjadikan pengalaman menginap Anda lebih istimewa.</p>
+        <p>Kamar mandi pribadi dilengkapi dengan perlengkapan mandi berkualitas tinggi, bathtub modern, shower hujan, dan fasilitas tambahan seperti handuk mewah, jubah mandi, serta sandal eksklusif untuk kenyamanan ekstra.</p>
+        <p>Ruang tamu yang elegan menyediakan sofa nyaman, meja kerja, dan TV layar datar dengan saluran hiburan premium. Cocok untuk bersantai atau menerima tamu dalam suasana yang berkelas.</p>
+        <p>Presidential Suite juga menawarkan layanan pribadi tambahan, termasuk layanan kamar 24 jam, akses prioritas, dan fasilitas minibar lengkap untuk memenuhi kebutuhan Anda kapan saja.</p>
+        <p>Pesan Presidential Suite untuk menikmati kemewahan terbaik, di mana setiap detail dirancang untuk memberikan pengalaman yang mengesankan dan tak terlupakan.</p>
+    </div>
+    
+    <!-- Room Images -->
+    <div class="room-images">
+        <img src="pres1.jpeg" alt="Presidential Suite Image 1" class="room-detail-image">
+        <img src="pres2.jpeg" alt="Presidential Suite Image 2" class="room-detail-image">
+        <img src="pres3.jpeg" alt="Presidential Suite Image 3" class="room-detail-image">
+        <img src="pres4.jpeg" alt="Presidential Suite Image 4" class="room-detail-image">
+    </div>
+</section>
+
+<!-- Modal untuk gambar fullscreen -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="fullImage">
+    <div id="caption"></div>
+</div>
+
+
+
+
+    <!-- Footer Section -->
+<footer>
+    <!-- Social Media Buttons -->
+    <div class="social-media">
+        <a href="https://www.instagram.com/rizalaprlydi?igsh=eG5rY2xmenBocmZp" target="_blank" class="social-btn instagram">
+            <i data-feather="instagram"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+            <i data-feather="facebook"></i>
+        </a>
+        <a href="https://www.tiktok.com/@malikaaw46?_t=ZS-8sxG3QRt3dI&_r=1" target="_blank" class="social-btn tiktok">
+            <i data-feather="twitter"></i> <!-- Feather doesn't have TikTok icon, using Twitter -->
+        </a>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812 3456 789</a></p>
+        <p>Email: <a href="mailto:contact@rizalizehotel.com">contact@rizalizehotel.com</a></p>
+    </div>
+</footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileLink = document.getElementById("profile-link");
+
+
+    // Fungsi untuk mengaktifkan tombol edit hanya untuk admin
+    function editRoom(userRole, roomId) {
+        const editButton = document.getElementById('edit-' + roomId);
+
+        // Jika user adalah admin, tampilkan tombol edit
+        if (userRole === 'admin') {
+            editButton.style.display = 'block';
+        } else {
+            editButton.style.display = 'none';
+        }
+    }
+
+   // Fungsi untuk scroll ke section detail
+function scrollToRoomDetail(targetId) {
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Ambil semua tombol view details
+const viewDetailsButtons = document.querySelectorAll('.view-details');
+
+// Tambahkan event listener untuk setiap tombol
+viewDetailsButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        scrollToRoomDetail(targetId);
+    });
+});
+
+
+
+    // Contoh penggunaan showEditButton untuk admin
+    const userRole = 'admin';  // Ganti dengan data role pengguna
+    editRoom(userRole, 'deluxe-room');
+    editRoom(userRole, 'deluxe-suite');
+    editRoom(userRole, 'presidential-suite');
+
+    // Ambil semua gambar dengan class .room-detail-image
+const images = document.querySelectorAll('.room-detail-image');
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('fullImage');
+const captionText = document.getElementById('caption');
+const closeBtn = document.getElementsByClassName('close')[0];
+
+// Menambahkan event listener pada setiap gambar
+images.forEach(image => {
+    image.onclick = function() {
+        modal.style.display = 'block';  // Menampilkan modal
+        modalImg.src = this.src;  // Menampilkan gambar yang diklik
+        captionText.innerHTML = this.alt;  // Menampilkan caption (jika ada)
+    }
+});
+
+// Menutup modal saat tombol close diklik
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Menutup modal jika di luar gambar diklik
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+
+
+        // Fungsi untuk menampilkan dropdown
+        function setProfileLink() {
+            const loggedIn = localStorage.getItem("loggedIn");
+            const role = localStorage.getItem("role"); 
+            if (loggedIn === "true") {
+                const initial = role === "admin" ? "A" : "U";
+                profileLink.innerHTML = `
+                    <div class="profile-initials">${initial}</div>
+                    <div class="profile-dropdown">
+                        <ul>
+                            <li>Profile</li>
+                            <li>Settings</li>
+                            <li onclick="logout()">Logout</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                profileLink.innerHTML = '<a href="login.html">Login</a>';
+            }
+        }
+
+        // Logout Function
+        window.logout = function () {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("role");
+            setProfileLink();
+            window.location.href = "login.html";
+        };
+
+        feather.replace();
+        setProfileLink();
+    });
+     // Fungsi untuk mengecek login status dan role pengguna
+function checkLogin() {
+    const loggedIn = localStorage.getItem("loggedIn");
+    const role = localStorage.getItem("role");
+    
+    if (loggedIn && role === "admin") {
+        // Menampilkan tombol edit untuk semua kamar
+        document.querySelectorAll('.edit-room').forEach(button => {
+            button.style.display = "inline-block"; // Menampilkan tombol edit
+        });
+    } else if (loggedIn && role === "user") {
+        // Pengguna biasa, tidak bisa mengedit
+        document.querySelectorAll('.edit-room').forEach(button => {
+            button.style.display = "none"; // Menyembunyikan tombol edit
+        });
+    } else {
+        // Jika belum login, sembunyikan tombol edit
+        document.querySelectorAll('.edit-room').forEach(button => {
+            button.style.display = "none"; // Menyembunyikan tombol edit
+        });
+    }
+}
+
+// Panggil fungsi checkLogin saat halaman dimuat
+window.onload = checkLogin;
+
+// Fungsi untuk menangani proses edit kamar
+function editRoom(roomId) {
+    const roomItem = document.getElementById(roomId);
+    
+    // Menyembunyikan tombol edit dan mengganti konten kamar dengan form edit
+    roomItem.innerHTML = `
+        <h3>Edit ${roomId.replace('-', ' ').toUpperCase()}</h3>
+        <form id="editForm">
+            <label for="price">Price:</label>
+            <input type="number" id="price" value="1500000" required>
+            <label for="facilities">Facilities:</label>
+            <input type="text" id="facilities" value="King-size bed, free Wi-Fi, breakfast included, private bathroom" required>
+            <label for="available">Available:</label>
+            <input type="number" id="available" value="5" required>
+            <button type="submit">Save Changes</button>
+        </form>
+    `;
+    
+    // Proses penyimpanan perubahan
+    document.getElementById("editForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Mencegah form untuk reload
+        
+        // Ambil data yang diubah
+        const newPrice = document.getElementById("price").value;
+        const newFacilities = document.getElementById("facilities").value;
+        const newAvailable = document.getElementById("available").value;
+        
+        // Update elemen dengan data baru
+        document.getElementById(`${roomId}-price`).innerText = newPrice;
+        document.getElementById(`${roomId}-facilities`).innerText = newFacilities;
+        document.getElementById(`${roomId}-available`).innerText = newAvailable;
+        
+        // Kembali ke tampilan asli setelah penyimpanan
+        alert("Changes saved successfully!");
+        roomItem.innerHTML = `
+            <i data-feather="home"></i>
+            <h3>${roomId.replace('-', ' ').toUpperCase()}</h3>
+            <p>Price: Rp <span id="${roomId}-price">${newPrice}</span> / Night</p>
+            <p>Available: <span id="${roomId}-available">${newAvailable}</span></p>
+            <p>Facilities: <span id="${roomId}-facilities">${newFacilities}</span></p>
+            <button class="view-details" data-target="#${roomId}-section">View Details</button>
+            <button class="edit-room" id="edit-${roomId}" style="display: none;" onclick="editRoom('${roomId}')">Edit Room</button>
+        `;
+        checkLogin(); // Menampilkan kembali tombol edit jika perlu
+    });
+}
+
+</script>
+</script>
+
+   
+</body>
+</html>
